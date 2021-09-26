@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             LineaSeeder::class,
             SublineaSeeder::class,
             MovimientoSeeder::class,
-            DatosProductoSeeder::class,
-            ArticulosMovimientoSeeder::class,
+            Datos_ProductoSeeder::class,
+            Articulos_MovimientoSeeder::class,
         ]);
     }
 

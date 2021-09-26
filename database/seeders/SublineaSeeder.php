@@ -23,7 +23,7 @@ class SublineaSeeder extends Seeder
         $descripcion=['Normal','Lite','Pro','Version T'];
         for ($i=0;$i<count($codigo);$i++) {
             $nuevo = new Sublinea();
-            $nuevo->codigo = $codigo[$i];
+            $nuevo->codigo_sublinea = $codigo[$i];
             $nuevo->descripcion = $descripcion[$i];
             $nuevo->save();
         }

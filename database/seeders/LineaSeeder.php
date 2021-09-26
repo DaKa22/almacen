@@ -23,7 +23,7 @@ class LineaSeeder extends Seeder
         $descripcion=['XIAOMI','SAMSUNG','MOTOROLA','APPLE'];
         for ($i=0;$i<count($codigo);$i++) {
             $nuevo = new Linea();
-            $nuevo->codigo = $codigo[$i];
+            $nuevo->codigo_linea = $codigo[$i];
             $nuevo->descripcion = $descripcion[$i];
             $nuevo->save();
         }

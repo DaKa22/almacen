@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Datos_Producto;
 use App\Models\DatosProducto;
 use Illuminate\Database\Seeder;
 
-class DatosProductoSeeder extends Seeder
+class Datos_ProductoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -26,7 +27,7 @@ class DatosProductoSeeder extends Seeder
         $lineas_id=[1,2,3,4];
         $sublineas_id=[2,1,4,3];
         for($i=0;count($codigo_producto)>$i;$i++){
-            $nuevo = new DatosProducto();
+            $nuevo = new Datos_Producto();
             $nuevo->codigo_producto =$codigo_producto[$i];
             $nuevo->descripcion =$descripcion[$i];
             $nuevo->costo_ultimo=$costo_ultimo[$i];
