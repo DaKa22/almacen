@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Linea;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class LineaController extends Controller
@@ -14,7 +15,7 @@ class LineaController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Linea::all());
     }
 
     /**
@@ -35,7 +36,29 @@ class LineaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            $linea = Linea::create([
+                'codigo_linea' => $request['codigo_linea'],
+                'descripcion' => $request['descripcion']
+
+            ]);
+            if($linea){
+                return response()->json([
+                    'status' => 'OK',
+                    'message' => 'Linea creada correctamente',
+                    'registro' => $linea
+                ]);
+            }
+
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ]);
+        }
+
     }
 
     /**
@@ -46,7 +69,13 @@ class LineaController extends Controller
      */
     public function show(Linea $linea)
     {
-        //
+        if(!$linea){
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Linea NO fue encontrada'
+            ]);
+        }
+        return response()->json(Linea::where('id',$linea->id)->first());
     }
 
     /**
@@ -57,7 +86,13 @@ class LineaController extends Controller
      */
     public function edit(Linea $linea)
     {
-        //
+        if(!$linea){
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => 'Linea NO fue encontrada'
+            ]);
+        }
+        return response()->json(Linea::where('id',$linea->id)->first());
     }
 
     /**
@@ -69,7 +104,32 @@ class LineaController extends Controller
      */
     public function update(Request $request, Linea $linea)
     {
-        //
+        try {
+            if(!$linea) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'No existe La Linea.'
+                ]);
+            }
+
+            $linea->update([
+                'codigo_linea' => $request['codigo_linea'],
+                'descripcion' => $request['descripcion']
+            ]);
+            if($linea->save()){
+                return response()->json([
+                    'status' => 'OK',
+                    'message' => 'Linea actualizado correctamente',
+                    'registro' => $linea
+                ]);
+            }
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -80,6 +140,33 @@ class LineaController extends Controller
      */
     public function destroy(Linea $linea)
     {
-        //
+        try {
+
+
+            if(!$linea) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => 'No existe la Linea.'
+                ]);
+            }
+            $linea->delete();
+
+            if($linea->save()){
+                return response()->json([
+                    'status' => 'ELIMINADO',
+                    'message'=>'Linea eliminado correctamente',
+                    'registro'=>$linea
+                ]);
+            }
+
+
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'message' => $e->getMessage()
+            ]);
+        }
+
     }
 }

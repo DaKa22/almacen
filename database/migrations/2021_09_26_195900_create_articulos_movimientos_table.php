@@ -18,7 +18,7 @@ class CreateArticulosMovimientosTable extends Migration
             $table->integer('cantidad');
             $table->bigInteger('valor');
             $table->foreignId('datos_productos_id')
-                ->constrained('datos_productos')
+                ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreignId('movimientos_id')

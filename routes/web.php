@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('articulos_movimiento', App\Http\Controllers\Articulos_MovimientoController::class);
