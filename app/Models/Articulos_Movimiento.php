@@ -15,4 +15,8 @@ class Articulos_Movimiento extends Model
         'datos_productos_id',
         'movimientos_id'
     ];
+    public function datos_productos()
+    {
+        return $this->belongsTo(Datos_Producto::class);
+    }
 }

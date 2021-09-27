@@ -39,8 +39,12 @@ class Datos_ProductoController extends Controller
 
         try {
             $Datos_Producto = Datos_Producto::create([
-                'codigo_Datos_Producto' => $request['codigo_Datos_Producto'],
-                'descripcion' => $request['descripcion']
+                'codigo_producto' => $request['codigo_producto'],
+                'descripcion' => $request['descripcion'],
+                'costo_ultimo' => $request['costo_ultimo'],
+                'stock' => $request['stock'],
+                'lineas_id' => $request['lineas_id'],
+                'sublineas_id' => $request['sublineas_id'],
 
             ]);
             if($Datos_Producto){
@@ -67,7 +71,7 @@ class Datos_ProductoController extends Controller
      * @param  \App\Models\Datos_Producto  $Datos_Producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Datos_Producto $Datos_Producto)
+    public function show($Datos_Producto)
     {
         if(!$Datos_Producto){
             return response()->json([
@@ -75,7 +79,7 @@ class Datos_ProductoController extends Controller
                 'message' => 'Datos_Producto NO fue encontrada'
             ]);
         }
-        return response()->json(Datos_Producto::where('id',$Datos_Producto->id)->first());
+        return response()->json(Datos_Producto::where('id',$Datos_Producto)->first());
     }
 
     /**
@@ -84,7 +88,7 @@ class Datos_ProductoController extends Controller
      * @param  \App\Models\Datos_Producto  $Datos_Producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Datos_Producto $Datos_Producto)
+    public function edit($Datos_Producto)
     {
         if(!$Datos_Producto){
             return response()->json([
@@ -92,7 +96,7 @@ class Datos_ProductoController extends Controller
                 'message' => 'Datos_Producto NO fue encontrada'
             ]);
         }
-        return response()->json(Datos_Producto::where('id',$Datos_Producto->id)->first());
+        return response()->json(Datos_Producto::where('id',$Datos_Producto)->first());
     }
 
     /**
@@ -102,8 +106,9 @@ class Datos_ProductoController extends Controller
      * @param  \App\Models\Datos_Producto  $Datos_Producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Datos_Producto $Datos_Producto)
+    public function update(Request $request,$id)
     {
+        $Datos_Producto=Datos_Producto::where('id',$id)->first();
         try {
             if(!$Datos_Producto) {
                 return response()->json([
@@ -113,8 +118,12 @@ class Datos_ProductoController extends Controller
             }
 
             $Datos_Producto->update([
-                'codigo_Datos_Producto' => $request['codigo_Datos_Producto'],
-                'descripcion' => $request['descripcion']
+                'codigo_producto' => $request['codigo_producto'],
+                'descripcion' => $request['descripcion'],
+                'costo_ultimo' => $request['costo_ultimo'],
+                'stock' => $request['stock'],
+                'lineas_id' => $request['lineas_id'],
+                'sublineas_id' => $request['sublineas_id'],
             ]);
             if($Datos_Producto->save()){
                 return response()->json([
@@ -138,10 +147,11 @@ class Datos_ProductoController extends Controller
      * @param  \App\Models\Datos_Producto  $Datos_Producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Datos_Producto $Datos_Producto)
+    public function destroy($id)
     {
         try {
 
+        $Datos_Producto=Datos_Producto::where('id',$id)->first();
 
             if(!$Datos_Producto) {
                 return response()->json([
@@ -149,9 +159,9 @@ class Datos_ProductoController extends Controller
                     'message' => 'No existe la Datos_Producto.'
                 ]);
             }
-            $Datos_Producto->delete();
 
-            if($Datos_Producto->save()){
+
+            if($Datos_Producto->delete()){
                 return response()->json([
                     'status' => 'ELIMINADO',
                     'message'=>'Datos_Producto eliminado correctamente',

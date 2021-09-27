@@ -149,9 +149,9 @@ class LineaController extends Controller
                     'message' => 'No existe la Linea.'
                 ]);
             }
-            $linea->delete();
 
-            if($linea->save()){
+
+            if($linea->delete()){
                 return response()->json([
                     'status' => 'ELIMINADO',
                     'message'=>'Linea eliminado correctamente',

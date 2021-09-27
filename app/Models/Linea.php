@@ -12,4 +12,8 @@ class Linea extends Model
         'codigo_linea',
         'descripcion',
     ];
+    public function datos_productos()
+    {
+        return $this->hasMany(Datos_Producto::class,'lineas_id');
+    }
 }

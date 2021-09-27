@@ -156,9 +156,9 @@ class MovimientoController extends Controller
                     'message' => 'No existe la Movimiento.'
                 ]);
             }
-            $Movimiento->delete();
 
-            if($Movimiento->save()){
+
+            if($Movimiento->delete()){
                 return response()->json([
                     'status' => 'ELIMINADO',
                     'message'=>'Movimiento eliminado correctamente',

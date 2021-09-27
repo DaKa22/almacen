@@ -149,9 +149,9 @@ class SublineaController extends Controller
                     'message' => 'No existe la Sublinea.'
                 ]);
             }
-            $Sublinea->delete();
 
-            if($Sublinea->save()){
+
+            if($Sublinea->delete()){
                 return response()->json([
                     'status' => 'ELIMINADO',
                     'message'=>'Sublinea eliminado correctamente',
