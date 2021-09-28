@@ -37,7 +37,39 @@ class SublineaController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->id){
+            try {
+                $Sublinea=Sublinea::where('id',$request->id)->first();
+                if(!$Sublinea) {
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'No existe La Sublinea.'
+                    ]);
+                }
 
+                $Sublinea->update([
+                    'codigo_sublinea' => $request['codigo_sublinea'],
+                    'descripcion' => $request['descripcion']
+                ]);
+                if($Sublinea->save()){
+                    return redirect()->back()->with([
+                        'created' => 1,
+                        'mensaje' => 'La Sublinea se  Actualizo Correctamente'
+                    ]);
+                }else {
+                    return redirect()->back()->with([
+                        'created' => 0,
+                        'mensaje' => 'La Sublinea NO se  Actualizo Correctamente'
+                    ]);
+                }
+
+            } catch (QueryException $e) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        }
         try {
             $Sublinea = Sublinea::create([
                 'codigo_Sublinea' => $request['codigo_Sublinea'],

@@ -37,7 +37,39 @@ class LineaController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->id){
+            try {
+                $linea=Linea::where('id',$request->id)->first();
+                if(!$linea) {
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'No existe La Linea.'
+                    ]);
+                }
 
+                $linea->update([
+                    'codigo_linea' => $request['codigo_linea'],
+                    'descripcion' => $request['descripcion']
+                ]);
+                if($linea->save()){
+                    return redirect()->back()->with([
+                        'created' => 1,
+                        'mensaje' => 'La Linea se  Actualizo Correctamente '
+                    ]);
+                }else {
+                    return redirect()->back()->with([
+                        'created' => 0,
+                        'mensaje' => 'La Linea NO se  Actualizo Correctamente'
+                    ]);
+                }
+
+            } catch (QueryException $e) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        }
         try {
             $linea = Linea::create([
                 'codigo_linea' => $request['codigo_linea'],

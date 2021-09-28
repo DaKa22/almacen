@@ -40,7 +40,41 @@ class Articulos_MovimientoController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->id){
+            try {
+                $Articulos_Movimiento=Articulos_Movimiento::where('id',$request->id)->first();
+                if(!$Articulos_Movimiento) {
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'No existe La Articulos_Movimiento.'
+                    ]);
+                }
 
+                $Articulos_Movimiento->update([
+                    'cantidad'=> $request['cantidad'],
+                    'valor'=>$request['valor'],
+                    'datos_productos_id'=>$request['datos_productos_id'],
+                    'movimientos_id'=>$request['movimientos_id']
+                ]);
+                if($Articulos_Movimiento->save()){
+                    return redirect()->back()->with([
+                        'created' => 1,
+                        'mensaje' => 'Los Articulos del Movimiento se Actualizo correctamente'
+                    ]);
+                }else {
+                    return redirect()->back()->with([
+                        'created' => 0,
+                        'mensaje' => 'Los Articulos del Movimiento NO se Actualizo correctamente'
+                    ]);
+                }
+
+            } catch (QueryException $e) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        }
         try {
             $Articulos_Movimiento = Articulos_Movimiento::create([
                 'cantidad' => $request['cantidad'],

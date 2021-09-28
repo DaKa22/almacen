@@ -149,5 +149,42 @@ function updateDatos_producto(id){
         }
     });
 }
+//Articulos_Movimiento
+function deleteArticulos_movimiento(id){
+    if(confirm('¿Estas seguro de eliminar?')){
+        $.ajax({
+            url:"articulos_movimiento/"+id,
+            type:"DELETE",
+            data:{id:id},
+            success:function (data){
+
+
+
+            },complete: function(data) {
+                window.location.reload();
+            }
+        });
+    }else{
+        alert('Cancelacion Exitosa')
+    }
+}
+
+function updateArticulos_movimiento(id){
+    $.ajax({
+        url:"articulos_movimiento/"+id,
+        type:"GET",
+        data:{id:id},
+        success:function (data){
+            $("#modal_crearArticulos_movimiento").modal("show")
+            $("#cantidad").val(data.cantidad)
+            $("#valor").val(data.valor)
+            $("#datos_productos_id").val(data.datos_productos_id)
+            $("#movimientos_id").val(data.movimientos_id)
+            $("#id").val(data.id)
+            $("#titulo").text("Editar Datos del Producto")
+
+        }
+    });
+}
 
 

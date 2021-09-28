@@ -38,7 +38,42 @@ class MovimientoController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->id){
+            try {
+                $Movimiento=Movimiento::where('id',$request->id)->first();
+                if(!$Movimiento) {
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'No existe el Movimiento.'
+                    ]);
+                }
 
+                $Movimiento->update([
+                    'tipo_movimiento' => $request['tipo_movimiento'],
+                    'cedula_movimiento' => $request['cedula_movimiento'],
+                    'nombre_movimiento' => $request['nombre_movimiento'],
+                    'fecha_movimiento' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'valor_total_movimiento' => $request['valor_total_movimiento'],
+                ]);
+                if($Movimiento->save()){
+                    return redirect()->back()->with([
+                        'created' => 1,
+                        'mensaje' => 'El Movimiento se Actualizo Correctamente'
+                    ]);
+                }else {
+                    return redirect()->back()->with([
+                        'created' => 0,
+                        'mensaje' => 'El Movimiento NO se Actualizo Correctamente'
+                    ]);
+                }
+
+            } catch (QueryException $e) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        }
         try {
             $Movimiento = Movimiento::create([
                 'tipo_movimiento' => $request['tipo_movimiento'],

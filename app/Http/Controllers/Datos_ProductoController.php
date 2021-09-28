@@ -37,7 +37,43 @@ class Datos_ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->id){
+            try {
+                $Datos_Producto=Datos_Producto::where('id',$request->id)->first();
+                if(!$Datos_Producto) {
+                    return response()->json([
+                        'status' => 'ERROR',
+                        'message' => 'No existe La Datos_Producto.'
+                    ]);
+                }
 
+                $Datos_Producto->update([
+                    'codigo_producto' => $request['codigo_producto'],
+                    'descripcion' => $request['descripcion'],
+                    'costo_ultimo' => $request['costo_ultimo'],
+                    'stock' => $request['stock'],
+                    'lineas_id' => $request['lineas_id'],
+                    'sublineas_id' => $request['sublineas_id'],
+                ]);
+                if($Datos_Producto->save()){
+                    return redirect()->back()->with([
+                        'created' => 1,
+                        'mensaje' => 'Los Datos del Poducto se Actualizo correctamente'
+                    ]);
+                }else {
+                    return redirect()->back()->with([
+                        'created' => 0,
+                        'mensaje' => 'Los Datos del Poducto NO se Actualizo correctamente'
+                    ]);
+                }
+
+            } catch (QueryException $e) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'message' => $e->getMessage()
+                ]);
+            }
+        }
         try {
             $Datos_Producto = Datos_Producto::create([
                 'codigo_producto' => $request['codigo_producto'],
