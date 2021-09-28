@@ -15,7 +15,8 @@ class Datos_ProductoController extends Controller
      */
     public function index()
     {
-        return response()->json(Datos_Producto::all());
+        $datos_productos=Datos_Producto::all();
+        return view('datos_productos.index', ['datos_productos' => $datos_productos]);
     }
 
     /**
@@ -48,10 +49,14 @@ class Datos_ProductoController extends Controller
 
             ]);
             if($Datos_Producto){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Datos_Producto creada correctamente',
-                    'registro' => $Datos_Producto
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'Los Datos del Producto se creo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'Los Datos del Producto NO se creo correctamente'
                 ]);
             }
 
@@ -126,10 +131,14 @@ class Datos_ProductoController extends Controller
                 'sublineas_id' => $request['sublineas_id'],
             ]);
             if($Datos_Producto->save()){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Datos_Producto actualizado correctamente',
-                    'registro' => $Datos_Producto
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'Los Datos del Poducto se Actualizo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'Los Datos del Poducto NO se Actualizo correctamente'
                 ]);
             }
 
@@ -162,10 +171,14 @@ class Datos_ProductoController extends Controller
 
 
             if($Datos_Producto->delete()){
-                return response()->json([
-                    'status' => 'ELIMINADO',
-                    'message'=>'Datos_Producto eliminado correctamente',
-                    'registro'=>$Datos_Producto
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'Los Datos del Producto se Elimino correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'Los Datos del Producto NO se Elimino correctamente'
                 ]);
             }
 

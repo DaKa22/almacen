@@ -15,7 +15,8 @@ class LineaController extends Controller
      */
     public function index()
     {
-        return response()->json(Linea::all());
+        $lineas=Linea::all();
+        return view('lineas.index', ['lineas' => $lineas]);
     }
 
     /**
@@ -44,10 +45,14 @@ class LineaController extends Controller
 
             ]);
             if($linea){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Linea creada correctamente',
-                    'registro' => $linea
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'La Linea se creo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'La Linea NO se creo correctamente'
                 ]);
             }
 
@@ -117,10 +122,14 @@ class LineaController extends Controller
                 'descripcion' => $request['descripcion']
             ]);
             if($linea->save()){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Linea actualizado correctamente',
-                    'registro' => $linea
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'La Linea se  Actualizo Correctamente '
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'La Linea NO se  Actualizo Correctamente'
                 ]);
             }
 
@@ -152,10 +161,14 @@ class LineaController extends Controller
 
 
             if($linea->delete()){
-                return response()->json([
-                    'status' => 'ELIMINADO',
-                    'message'=>'Linea eliminado correctamente',
-                    'registro'=>$linea
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'La Linea se Elimino correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'La Linea NO se Elimino correctamente'
                 ]);
             }
 

@@ -17,7 +17,9 @@ class Articulos_MovimientoController extends Controller
      */
     public function index()
     {
-        return response()->json(Articulos_Movimiento::all());
+        $articulos_movimientos=Articulos_Movimiento::all();
+        return view('articulos_movimientos.index', ['articulos_movimientos' => $articulos_movimientos]);
+
     }
 
     /**
@@ -72,10 +74,14 @@ class Articulos_MovimientoController extends Controller
             }
 
             if($Articulos_Movimiento){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Articulos_Movimiento creada correctamente',
-                    'registro' => $Articulos_Movimiento
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'Los Articulos del Movimiento se creo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'Los Articulos del Movimiento NO se creo correctamente'
                 ]);
             }
 
@@ -148,10 +154,14 @@ class Articulos_MovimientoController extends Controller
                 'movimientos_id'=>$request['movimientos_id']
             ]);
             if($Articulos_Movimiento->save()){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Articulos_Movimiento actualizado correctamente',
-                    'registro' => $Articulos_Movimiento
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'Los Articulos del Movimiento se Actualizo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'Los Articulos del Movimiento NO se Actualizo correctamente'
                 ]);
             }
 
@@ -185,10 +195,14 @@ class Articulos_MovimientoController extends Controller
 
 
             if($Articulos_Movimiento->delete()){
-                return response()->json([
-                    'status' => 'ELIMINADO',
-                    'message'=>'Articulos_Movimiento eliminado correctamente',
-                    'registro'=>$Articulos_Movimiento
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'Los Articulos del Movimiento se Elimino correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'Los Articulos del Movimiento NO se Elimino correctamente'
                 ]);
             }
 

@@ -15,7 +15,8 @@ class SublineaController extends Controller
      */
     public function index()
     {
-        return response()->json(Sublinea::all());
+        $sublineas=Sublinea::all();
+        return view('sublineas.index', ['sublineas' => $sublineas]);
     }
 
     /**
@@ -44,10 +45,14 @@ class SublineaController extends Controller
 
             ]);
             if($Sublinea){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Sublinea creada correctamente',
-                    'registro' => $Sublinea
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'La Sublinea se creo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'La Sublinea NO se creo correctamente'
                 ]);
             }
 
@@ -117,10 +122,14 @@ class SublineaController extends Controller
                 'descripcion' => $request['descripcion']
             ]);
             if($Sublinea->save()){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Sublinea actualizado correctamente',
-                    'registro' => $Sublinea
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'La Sublinea se  Actualizo Correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'La Sublinea NO se  Actualizo Correctamente'
                 ]);
             }
 
@@ -152,10 +161,14 @@ class SublineaController extends Controller
 
 
             if($Sublinea->delete()){
-                return response()->json([
-                    'status' => 'ELIMINADO',
-                    'message'=>'Sublinea eliminado correctamente',
-                    'registro'=>$Sublinea
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'La Sublinea se Elimino Correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'La Sublinea NO se Elimino Correctamente'
                 ]);
             }
 

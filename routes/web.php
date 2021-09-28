@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::resource('articulos_movimiento', App\Http\Controllers\Articulos_MovimientoController::class);
 Route::resource('datos_producto', App\Http\Controllers\Datos_ProductoController::class);
 Route::resource('linea', App\Http\Controllers\LineaController::class);

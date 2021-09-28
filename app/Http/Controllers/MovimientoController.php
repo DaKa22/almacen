@@ -16,7 +16,8 @@ class MovimientoController extends Controller
      */
     public function index()
     {
-        return response()->json(Movimiento::all());
+        $movimientos=Movimiento::all();
+        return view('movimientos.index', ['movimientos' => $movimientos]);
     }
 
     /**
@@ -48,10 +49,14 @@ class MovimientoController extends Controller
 
             ]);
             if($Movimiento){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Movimiento creado correctamente',
-                    'registro' => $Movimiento
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'El Movimiento se creo correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'El Movimiento NO se creo correctamente'
                 ]);
             }
 
@@ -124,10 +129,14 @@ class MovimientoController extends Controller
                 'valor_total_movimiento' => $request['valor_total_movimiento'],
             ]);
             if($Movimiento->save()){
-                return response()->json([
-                    'status' => 'OK',
-                    'message' => 'Movimiento actualizado correctamente',
-                    'registro' => $Movimiento
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'El Movimiento se Actualizo Correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'El Movimiento NO se Actualizo Correctamente'
                 ]);
             }
 
@@ -159,10 +168,14 @@ class MovimientoController extends Controller
 
 
             if($Movimiento->delete()){
-                return response()->json([
-                    'status' => 'ELIMINADO',
-                    'message'=>'Movimiento eliminado correctamente',
-                    'registro'=>$Movimiento
+                return redirect()->back()->with([
+                    'created' => 1,
+                    'mensaje' => 'El Movimiento se Elimino correctamente'
+                ]);
+            }else {
+                return redirect()->back()->with([
+                    'created' => 0,
+                    'mensaje' => 'El Movimiento NO se Elimino correctamente'
                 ]);
             }
 
