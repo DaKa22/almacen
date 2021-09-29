@@ -21,7 +21,12 @@ class Articulos_MovimientoController extends Controller
         return view('articulos_movimientos.index', ['articulos_movimientos' => $articulos_movimientos]);
 
     }
-
+    public function imprimir()
+    {
+        $articulos_movimientos=Articulos_Movimiento::all();
+        $pdf= \PDF::loadView('articulos_movimientos.imprimir',compact('articulos_movimientos'));
+        return $pdf->download('Articulos_movimientos.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *

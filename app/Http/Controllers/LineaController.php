@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Linea;
+use PDF;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,12 @@ class LineaController extends Controller
     {
         $lineas=Linea::all();
         return view('lineas.index', ['lineas' => $lineas]);
+    }
+    public function imprimir()
+    {
+        $lineas=Linea::all();
+        $pdf= \PDF::loadView('lineas.imprimir',compact('lineas'));
+        return $pdf->download('Lineas.pdf');
     }
 
     /**

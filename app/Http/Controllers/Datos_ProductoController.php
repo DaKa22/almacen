@@ -18,7 +18,12 @@ class Datos_ProductoController extends Controller
         $datos_productos=Datos_Producto::all();
         return view('datos_productos.index', ['datos_productos' => $datos_productos]);
     }
-
+    public function imprimir()
+    {
+        $datos_productos=Datos_Producto::all();
+        $pdf= \PDF::loadView('datos_productos.imprimir',compact('datos_productos'));
+        return $pdf->download('Datos_productos.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *

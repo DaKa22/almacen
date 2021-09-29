@@ -17,6 +17,11 @@
                         <button class="btn btn-light btn-rounded" type="button" data-toggle="modal" data-target="#modal_crearSublinea">
                             <i class="mdi mdi-plus mr-1"></i> Agregar
                         </button>
+                        <a href="{{route('imprimir.sublineas')}}">
+                            <button class="btn btn-light btn-rounded" type="button" >
+                                <i class="mdi mdi-plus mr-1"></i> PDF
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

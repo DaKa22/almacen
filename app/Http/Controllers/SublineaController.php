@@ -18,7 +18,12 @@ class SublineaController extends Controller
         $sublineas=Sublinea::all();
         return view('sublineas.index', ['sublineas' => $sublineas]);
     }
-
+    public function imprimir()
+    {
+        $sublineas=Sublinea::all();
+        $pdf= \PDF::loadView('sublineas.imprimir',compact('sublineas'));
+        return $pdf->download('Sublineas.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *

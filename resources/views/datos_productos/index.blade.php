@@ -17,6 +17,11 @@
                         <button class="btn btn-light btn-rounded" type="button" data-toggle="modal" data-target="#modal_crearDatos_producto">
                             <i class="mdi mdi-plus mr-1"></i> Agregar
                         </button>
+                        <a href="{{route('imprimir.datos')}}">
+                            <button class="btn btn-light btn-rounded" type="button" >
+                                <i class="mdi mdi-plus mr-1"></i> PDF
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

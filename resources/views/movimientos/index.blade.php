@@ -19,6 +19,11 @@
                         <button class="btn btn-light btn-rounded" type="button" data-toggle="modal" data-target="#modal_crearMovimiento">
                             <i class="mdi mdi-plus mr-1"></i> Agregar
                         </button>
+                        <a href="{{route('imprimir.movimientos')}}">
+                            <button class="btn btn-light btn-rounded" type="button" >
+                                <i class="mdi mdi-plus mr-1"></i> PDF
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

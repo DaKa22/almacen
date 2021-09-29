@@ -36,6 +36,12 @@ class MovimientoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function imprimir()
+    {
+        $movimientos=Movimiento::all();
+        $pdf= \PDF::loadView('movimientos.imprimir',compact('movimientos'));
+        return $pdf->download('Movimientos.pdf');
+    }
     public function store(Request $request)
     {
         if($request->id){

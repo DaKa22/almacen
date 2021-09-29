@@ -17,9 +17,18 @@
                         <button class="btn btn-light btn-rounded" type="button" data-toggle="modal" data-target="#modal_crearLinea">
                             <i class="mdi mdi-plus mr-1"></i> Agregar
                         </button>
+                        <a href="{{route('imprimir.lineas')}}">
+                            <button class="btn btn-light btn-rounded" type="button" >
+                                <i class="mdi mdi-plus mr-1"></i> PDF
+                            </button>
+                        </a>
                     </div>
+
+
+
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -42,7 +51,7 @@
                         @endif
 
                         <div class="table-responsive">
-                            <table class="table table-bordered mb-0">
+                            <table class="table table-bordered mb-0" id="linea">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -115,6 +124,5 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 
 @endsection

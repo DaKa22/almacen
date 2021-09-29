@@ -188,3 +188,5 @@ function updateArticulos_movimiento(id){
 }
 
 
+
+
