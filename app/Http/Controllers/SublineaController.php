@@ -76,8 +76,9 @@ class SublineaController extends Controller
             }
         }
         try {
+
             $Sublinea = Sublinea::create([
-                'codigo_Sublinea' => $request['codigo_Sublinea'],
+                'codigo_sublinea' => $request['codigo_sublinea'],
                 'descripcion' => $request['descripcion']
 
             ]);

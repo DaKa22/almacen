@@ -78,7 +78,9 @@ class LineaController extends Controller
             }
         }
         try {
+          
             $linea = Linea::create([
+
                 'codigo_linea' => $request['codigo_linea'],
                 'descripcion' => $request['descripcion']
 
