@@ -32,9 +32,9 @@ function updateLinea(id){
             $("#modal_crearLinea").modal("show")
             $("#codigo_linea").val(data.codigo_linea)
             $("#descripcion").val(data.descripcion)
+            $('#sublinea_id').val(data.sublinea_id)
             $("#id").val(data.id)
             $("#titulo").text("Editar Linea")
-
         }
     });
 }
