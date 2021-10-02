@@ -115,6 +115,15 @@
                             <label for="descripcion">Descripcion</label>
                             <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Escriba La Descripcion" required>
                         </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="descripcion">Sublinea</label>
+                            <select name="sublinea_id" id="sublinea_id" class="form-control">
+                                <option value="" selected disabled>Seleccione Sublinea</option>
+                                @foreach ($sublineas as $sublinea)
+                                    <option value="{{$sublinea->id}}">{{$sublinea->descripcion}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <input type="hidden" id="id" name="id" value="">
                     <button class="btn btn-primary" type="submit">Enviar</button>
@@ -125,4 +134,9 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+@endsection
+
+
+@section('myScripts')
+    <script src="{{asset('assets/js/lineas.js')}}"></script>
 @endsection

@@ -17,8 +17,8 @@ class CreateDatosProductosTable extends Migration
             $table->id();
             $table->integer('codigo_producto')->unique();
             $table->string('descripcion');
-            $table->bigInteger('costo_ultimo')->nullable();
-            $table->integer('stock');
+            $table->bigInteger('costo_ultimo')->default(0)->nullable();
+            $table->bigInteger('stock')->default(0);
             $table->foreignId('lineas_id')
                 ->constrained()
                 ->onUpdate('cascade')

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LineaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,5 @@ Route::get('imprimir4', [App\Http\Controllers\SublineaController::class, 'imprim
 
 Route::resource('movimiento', App\Http\Controllers\MovimientoController::class);
 Route::get('imprimir5', [App\Http\Controllers\MovimientoController::class, 'imprimir'])->name('imprimir.movimientos');
+
 

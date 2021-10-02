@@ -11,6 +11,7 @@ class Linea extends Model
     protected $fillable = [
         'codigo_linea',
         'descripcion',
+        'sublinea_id'
     ];
     public function datos_productos()
     {

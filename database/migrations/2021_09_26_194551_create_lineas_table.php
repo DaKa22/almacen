@@ -17,6 +17,7 @@ class CreateLineasTable extends Migration
             $table->id();
             $table->integer('codigo_linea')->unique();
             $table->string('descripcion');
+            $table->foreignId('sublinea_id')->constrained('sublineas')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -21,4 +21,8 @@ class Datos_Producto extends Model
     {
         return $this->belongsTo(Linea::class);
     }
+
+    public function sublineas(){
+        return $this->belongsTo(Sublinea::class);
+    }
 }

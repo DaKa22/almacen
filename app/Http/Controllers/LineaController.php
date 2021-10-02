@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Linea;
+use App\Models\Sublinea;
 use PDF;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class LineaController extends Controller
     public function index()
     {
         $lineas=Linea::all();
-        return view('lineas.index', ['lineas' => $lineas]);
+        $sublineas = Sublinea::all();
+        return view('lineas.index', ['lineas' => $lineas, 'sublineas' => $sublineas]);
     }
     public function imprimir()
     {
@@ -25,7 +27,6 @@ class LineaController extends Controller
         $pdf= \PDF::loadView('lineas.imprimir',compact('lineas'));
         return $pdf->download('Lineas.pdf');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +57,8 @@ class LineaController extends Controller
 
                 $linea->update([
                     'codigo_linea' => $request['codigo_linea'],
-                    'descripcion' => $request['descripcion']
+                    'descripcion' => $request['descripcion'],
+                    'sublinea_id' => $request['sublinea_id']
                 ]);
                 if($linea->save()){
                     return redirect()->back()->with([
@@ -78,11 +80,12 @@ class LineaController extends Controller
             }
         }
         try {
-          
+
             $linea = Linea::create([
 
                 'codigo_linea' => $request['codigo_linea'],
-                'descripcion' => $request['descripcion']
+                'descripcion' => $request['descripcion'],
+                'sublinea_id' => $request['sublinea_id']
 
             ]);
             if($linea){
@@ -160,7 +163,8 @@ class LineaController extends Controller
 
             $linea->update([
                 'codigo_linea' => $request['codigo_linea'],
-                'descripcion' => $request['descripcion']
+                'descripcion' => $request['descripcion'],
+                'sublinea_id' => $request['sublinea_id']
             ]);
             if($linea->save()){
                 return redirect()->back()->with([

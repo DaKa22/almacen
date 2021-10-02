@@ -15,7 +15,7 @@ class Datos_ProductoController extends Controller
      */
     public function index()
     {
-        $datos_productos=Datos_Producto::all();
+        $datos_productos=Datos_Producto::with('lineas')->with('sublineas')->get();
         return view('datos_productos.index', ['datos_productos' => $datos_productos]);
     }
     public function imprimir()

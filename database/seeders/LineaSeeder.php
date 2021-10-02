@@ -25,6 +25,7 @@ class LineaSeeder extends Seeder
             $nuevo = new Linea();
             $nuevo->codigo_linea = $codigo[$i];
             $nuevo->descripcion = $descripcion[$i];
+            $nuevo->sublinea_id = rand(1,4);
             $nuevo->save();
         }
     }

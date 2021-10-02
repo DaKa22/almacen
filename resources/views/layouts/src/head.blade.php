@@ -13,6 +13,9 @@
     <!-- jvectormap -->
     <link href="{{asset('assets/libs/jqvmap/jqvmap.min.css')}}assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
 
+    <!-- Selectize -->
+    <link href="{{asset('assets/libs/selectize/css/selectize.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- Bootstrap Css -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
