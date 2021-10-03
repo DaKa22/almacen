@@ -60,9 +60,6 @@
                                                             <th>#</th>
                                                             <th>Codigo de Linea</th>
                                                             <th>Descripcion</th>
-
-
-
                                                         </tr>
                                                     </thead>
                                                     <tbody>

@@ -60,7 +60,6 @@
                                                             <th>#</th>
                                                             <th>Codigo de Sublinea</th>
                                                             <th>Descripcion</th>
-
                                                         </tr>
                                                     </thead>
                                                     <tbody>

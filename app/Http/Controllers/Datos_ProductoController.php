@@ -20,7 +20,8 @@ class Datos_ProductoController extends Controller
     }
     public function imprimir()
     {
-        $datos_productos=Datos_Producto::all();
+        $datos_productos=Datos_Producto::with('lineas')->with('sublineas')->get();
+
         $pdf= \PDF::loadView('datos_productos.imprimir',compact('datos_productos'));
         return $pdf->download('Datos_productos.pdf');
     }

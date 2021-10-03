@@ -53,8 +53,8 @@
                                         <th>#</th>
                                         <th>Cantidad</th>
                                         <th>Valor</th>
-                                        <th>Datos del Producto ID</th>
-                                        <th>Movimientos ID</th>
+                                        <th>Datos del Producto</th>
+                                        <th>Movimientos</th>
                                         <th>Configuracion</th>
                                         <th><i class="fa fa-settings"></i></th>
                                     </tr>
@@ -66,8 +66,8 @@
 
                                             <td>{{ $articulos_movimiento->cantidad }}</td>
                                             <td>{{ $articulos_movimiento->valor }}</td>
-                                            <td>{{ $articulos_movimiento->datos_productos_id }}</td>
-                                            <td>{{ $articulos_movimiento->movimientos_id }}</td>
+                                            <td>{{ $articulos_movimiento->datos_productos->descripcion }}</td>
+                                            <td>{{ $articulos_movimiento->movimientos->nombre_movimiento }}</td>
 
                                             <td>
                                                 <button class="btn btn-danger" onclick="deleteArticulos_movimiento({{ $articulos_movimiento->id }})"><i class="fa fa-trash"></i></button>
@@ -123,6 +123,7 @@
                             <label for="movimientos_id">Movimientos ID</label>
                             <input type="number" class="form-control" id="movimientos_id" name="movimientos_id" placeholder="Escriba El ID del Movimiento" required>
                         </div>
+
                     </div>
                     <input type="hidden" id="id" name="id" value="">
                     <button class="btn btn-primary" type="submit">Enviar</button>

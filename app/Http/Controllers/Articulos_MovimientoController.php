@@ -17,7 +17,7 @@ class Articulos_MovimientoController extends Controller
      */
     public function index()
     {
-        $articulos_movimientos=Articulos_Movimiento::all();
+        $articulos_movimientos=Articulos_Movimiento::with('datos_productos','movimientos')->get();
         return view('articulos_movimientos.index', ['articulos_movimientos' => $articulos_movimientos]);
 
     }

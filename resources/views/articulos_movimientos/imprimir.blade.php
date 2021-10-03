@@ -60,8 +60,8 @@
                                                             <th>#</th>
                                                             <th>Cantidad</th>
                                                             <th>Valor</th>
-                                                            <th>Datos del Producto ID</th>
-                                                            <th>Movimientos ID</th>
+                                                            <th>Datos del Producto</th>
+                                                            <th>Movimientos</th>
 
                                                         </tr>
                                                     </thead>
@@ -72,8 +72,8 @@
 
                                                                 <td>{{ $articulos_movimiento->cantidad }}</td>
                                                                 <td>{{ $articulos_movimiento->valor }}</td>
-                                                                <td>{{ $articulos_movimiento->datos_productos_id }}</td>
-                                                                <td>{{ $articulos_movimiento->movimientos_id }}</td>
+                                                                <td>{{ $articulos_movimiento->datos_productos->descripcion }}</td>
+                                                                <td>{{ $articulos_movimiento->movimientos->nombre_movimiento }}</td>
 
 
                                                             </tr>

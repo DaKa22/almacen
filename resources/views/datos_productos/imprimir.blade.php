@@ -62,8 +62,8 @@
                                                             <th>Descripcion</th>
                                                             <th>Ultimo Costo</th>
                                                             <th>Stock</th>
-                                                            <th>Linea ID</th>
-                                                            <th>Sublinea ID</th>
+                                                            <th>Linea</th>
+                                                            <th>Sublinea</th>
 
                                                         </tr>
                                                     </thead>
@@ -76,8 +76,8 @@
                                                                 <td>{{ $datos_producto->descripcion }}</td>
                                                                 <td>{{ $datos_producto->costo_ultimo }}</td>
                                                                 <td>{{ $datos_producto->stock }}</td>
-                                                                <td>{{ $datos_producto->lineas_id }}</td>
-                                                                <td>{{ $datos_producto->sublineas_id }}</td>
+                                                                <td>{{ $datos_producto->lineas->descripcion }}</td>
+                                                                <td>{{ $datos_producto->sublineas->descripcion }}</td>
 
 
                                                             </tr>

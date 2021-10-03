@@ -24,7 +24,7 @@ class Articulos_MovimientoSeeder extends Seeder
             $nuevo->valor=$valor[$i];
             $nuevo->datos_productos_id=$datos_prodctos_id[$i];
             $nuevo->movimientos_id=$movimientos_id[$i];
-            $nuevo->save();
+
         }
     }
 }
