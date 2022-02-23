@@ -10,23 +10,36 @@
                 <li class="menu-title">ADMINISTRACIÓN</li>
 
                 <li>
-                    <a href="{{route('user.index')}}" class=" waves-effect">
+                    <a href="{{route('linea.index')}}" class=" waves-effect">
                         <div class="d-inline-block icons-sm mr-1"><i class="uim uim-briefcase"></i></div>
-                        <span>Usuarios</span>
+                        <span>Lineas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('tabla_estudio.index')}}" class=" waves-effect">
+                    <a href="{{route('sublinea.index')}}" class=" waves-effect">
                         <div class="d-inline-block icons-sm mr-1"><i class="uim uim-briefcase"></i></div>
-                        <span>Tabla de Estudios</span>
+                        <span>Sublineas</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="{{route('movimiento.index')}}" class=" waves-effect">
+                        <div class="d-inline-block icons-sm mr-1"><i class="uim uim-briefcase"></i></div>
+                        <span>Movimientos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('datos_producto.index')}}" class=" waves-effect">
                         <div class="d-inline-block icons-sm mr-1"><i class="uim uim-briefcase"></i></div>
                         <span>Datos de Productos</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('articulos_movimiento.index')}}" class=" waves-effect">
+                        <div class="d-inline-block icons-sm mr-1"><i class="uim uim-briefcase"></i></div>
+                        <span>Articulos_Movimiento</span>
+                    </a>
+                </li>
+
             </ul>
 
         </div>
