@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\LineaController;
+use App\Http\Controllers\Historial_LaboralController;
+use App\Http\Controllers\Tabla_EstudioController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,19 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('articulos_movimiento', App\Http\Controllers\Articulos_MovimientoController::class);
-Route::get('imprimir1', [App\Http\Controllers\Articulos_MovimientoController::class, 'imprimir'])->name('imprimir.articulos');
+Route::resource('user', UserController::class);
+Route::get('imprimir_user', [UserController::class, 'imprimir'])->name('imprimir.users');
 
-Route::resource('datos_producto', App\Http\Controllers\Datos_ProductoController::class);
-Route::get('imprimir2', [App\Http\Controllers\Datos_ProductoController::class, 'imprimir'])->name('imprimir.datos');
+Route::resource('tabla_estudio', Tabla_EstudioController::class);
+Route::get('imprimir_tabla_estudio', [Tabla_EstudioController::class, 'imprimir'])->name('imprimir.tabla_estudio');
 
-Route::resource('linea', App\Http\Controllers\LineaController::class);
-Route::get('imprimir3', [App\Http\Controllers\LineaController::class, 'imprimir'])->name('imprimir.lineas');
-
-Route::resource('sublinea', App\Http\Controllers\SublineaController::class);
-Route::get('imprimir4', [App\Http\Controllers\SublineaController::class, 'imprimir'])->name('imprimir.sublineas');
-
-Route::resource('movimiento', App\Http\Controllers\MovimientoController::class);
-Route::get('imprimir5', [App\Http\Controllers\MovimientoController::class, 'imprimir'])->name('imprimir.movimientos');
+Route::resource('historial_laboral', Historial_LaboralController::class);
+Route::get('imprimir_historial_laboral', [Historial_LaboralController::class, 'imprimir'])->name('imprimir.historial_laboral');
 
 

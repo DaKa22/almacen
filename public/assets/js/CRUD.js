@@ -3,11 +3,11 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-//LINEA
-function deleteLinea(id){
+//user
+function deleteUser(id){
     if(confirm('¿Estas seguro de eliminar?')){
         $.ajax({
-            url:"linea/"+id,
+            url:"user/"+id,
             type:"DELETE",
             data:{id:id},
             success:function (data){
@@ -23,26 +23,36 @@ function deleteLinea(id){
     }
 }
 
-function updateLinea(id){
+function updateUser(id){
     $.ajax({
-        url:"linea/"+id,
+        url:"user/"+id,
         type:"GET",
         data:{id:id},
         success:function (data){
-            $("#modal_crearLinea").modal("show")
-            $("#codigo_linea").val(data.codigo_linea)
-            $("#descripcion").val(data.descripcion)
-            $('#sublinea_id').val(data.sublinea_id)
+            $("#modal_crearUser").modal("show")
+            $("#cedula").val(data.cedula)
+            $("#nombre1").val(data.nombre1)
+            $('#nombre2').val(data.nombre2)
+            $('#apellido1').val(data.apellido1)
+            $('#apellido2').val(data.apellido2)
+            $('#telefono').val(data.telefono)
+            $('#direccion').val(data.direccion)
+            $('#email').val(data.email)
+            $('#genero').val(data.genero)
+            $('#nacionalidad').val(data.nacionalidad)
+            $('#estado_civil').val(data.estado_civil)
+            $('#fecha_nacimiento').val(data.fecha_nacimiento)
+            $('#rh').val(data.rh)
             $("#id").val(data.id)
             $("#titulo").text("Editar Linea")
         }
     });
 }
-//SUBLINEA
-function deleteSublinea(id){
+//TablaEstudio
+function deleteTablaEstudio(id){
     if(confirm('¿Estas seguro de eliminar?')){
         $.ajax({
-            url:"sublinea/"+id,
+            url:"tabla_estudio/"+id,
             type:"DELETE",
             data:{id:id},
             success:function (data){
@@ -58,17 +68,19 @@ function deleteSublinea(id){
     }
 }
 
-function updateSublinea(id){
+function updateTablaEstudio(id){
     $.ajax({
-        url:"sublinea/"+id,
+        url:"tabla_estudio/"+id,
         type:"GET",
         data:{id:id},
         success:function (data){
-            $("#modal_crearSublinea").modal("show")
-            $("#codigo_sublinea").val(data.codigo_sublinea)
-            $("#descripcion").val(data.descripcion)
+            $("#modal_crearTablaEstudio").modal("show")
+            $("#TE_titulo").val(data.titulo)
+            $("#entidad_educativa").val(data.entidad_educativa)
+            $("#fecha_terminacion").val(data.fecha_terminacion)
+            $("#users_id").val(data.users_id)
             $("#id").val(data.id)
-            $("#titulo").text("Editar Sublinea")
+            $("#titulo").text("Editar Tabla de Estudio")
 
         }
     });
@@ -77,7 +89,7 @@ function updateSublinea(id){
 function deleteMovimiento(id){
     if(confirm('¿Estas seguro de eliminar?')){
         $.ajax({
-            url:"movimiento/"+id,
+            url:"tabla_estudio/"+id,
             type:"DELETE",
             data:{id:id},
             success:function (data){

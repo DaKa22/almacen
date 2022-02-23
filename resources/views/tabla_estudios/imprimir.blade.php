@@ -1,9 +1,16 @@
 <!doctype html>
 <html lang="es">
+    <style>
+
+        @page {
+		margin-left: 0rem;
+		margin-right: 0rem;
+	    }
+    </style>
 
     <head>
         <meta charset="utf-8" />
-        <title>RyanCompany | Linea
+        <title>SisenSecurity | Tabla de Estudios
 
         <!-- App favicon -->
 
@@ -45,39 +52,40 @@
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="header-title">Reporte de Lineas</h4>
+                                            <h4 class="header-title">Reporte Tabla de Estudio </h4>
 
-                                            @if (session()->has('created') && session()->has('mensaje'))
-                                                <div class="alert {{ session('created') == 1 ? 'alert-success' : 'alert-danger' }} mb-2" role="alert">
-                                                    {{ session('mensaje') }}
-                                                </div>
-                                            @endif
+
 
                                             <div class="table-responsive">
-                                                <table class="table table-bordered mb-0" id="linea">
+                                                {{-- <table class="table w-auto small  mb-0" style="font-size: .7.5rem;"   id="user_impresion"> --}}
+                                                    <table class="table w-auto small  mb-0" style="font-size: 15px;"   id="user_impresion">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
-                                                            <th>Codigo de Linea</th>
-                                                            <th>Descripcion</th>
+                                                            <th class="text-center align-middle" style="min-width: 3rem">#</th>
+                                                            <th class="text-center align-middle" style="min-width: 10rem">Usuario</th>
+                                                            <th class="text-center align-middle" style="min-width: 10rem">Identificacion</th>
+                                                            <th class="text-center align-middle" style="min-width: 8rem">Titulo</th>
+                                                            <th class="text-center align-middle" style="min-width: 8rem">Entidad Educativa</th>
+                                                            <th class="text-center align-middle" style="min-width: 8rem">Fecha Terminacion</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($lineas as $linea)
-                                                            <tr>
-                                                                <th scope="row">{{ $linea->id }}</th>
+                                                        @foreach ($tabla_estudios as $tabla_estudio)
+                                                        <tr>
+                                                            <th scope="row">{{ $tabla_estudio->id }}</th>
 
-                                                                <td>{{ $linea->codigo_linea }}</td>
-                                                                <td>{{ $linea->descripcion }}</td>
-
-
-
-                                                            </tr>
-                                                        @endforeach
+                                                            <td>{{ $tabla_estudio['users']['nombre1'].' '.$tabla_estudio['users']['apellido1'] }}</td>
+                                                            <td>{{ $tabla_estudio['users']['cedula'] }}</td>
+                                                            <td>{{ $tabla_estudio->titulo }}</td>
+                                                            <td>{{ $tabla_estudio->entidad_educativa }}</td>
+                                                            <td>{{ $tabla_estudio->fecha_terminacion }}</td>
+                                                        </tr>
+                                                    @endforeach
 
                                                     </tbody>
                                                 </table>
                                             </div>
+
 
                                         </div>
                                     </div>
@@ -110,11 +118,6 @@
 
         <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-        <script src="{{asset('assets/js/CRUD.js')}}">  </script>
-
-
-
     </body>
 </html>
 
